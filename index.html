@@ -25,6 +25,7 @@
       <div id="okta-login-container"></div>
     </div>
     <script type="text/javascript">
+      document.getElementById("messageBox").innerHTML = "bug 0";
       var oktaSignIn = new OktaSignIn({
         baseUrl: "dev-32249850.okta.com",
         clientId: "0oa3x8jkvs77AWK695d7",
@@ -34,14 +35,16 @@
           display: 'page'
         }
       });
-
+   document.getElementById("messageBox").innerHTML = "bug 1";
       if (oktaSignIn.token.hasTokensInUrl()) {
         oktaSignIn.token.parseTokensFromUrl(
           // If we get here, the user just logged in.
+          document.getElementById("messageBox").innerHTML = "bug 2";
           function success(res) {
             var accessToken = res[0];
             var idToken = res[1];
-
+  
+          document.getElementById("messageBox").innerHTML = "bug 3";
             oktaSignIn.tokenManager.add('accessToken', accessToken);
             oktaSignIn.tokenManager.add('idToken', idToken);
 
@@ -64,6 +67,7 @@
             function success(res) {},
             function error(err) {
               console.error(err);
+              document.getElementById("messageBox").innerHTML = "bug 9";
             }
           );
         });
